@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Table(name="Department_Details")
 public class Department {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "deptId")
 	private int deptId;
 	//@Size(min=2, max=20,message="Please give valid name")

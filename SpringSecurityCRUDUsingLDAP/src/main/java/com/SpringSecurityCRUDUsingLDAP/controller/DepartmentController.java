@@ -118,7 +118,7 @@ public class DepartmentController {
 		ModelAndView model = new ModelAndView("form");
 		HttpSession session1 = request.getSession();
 		Department department1 = new Department();
-		//department1.setDeptId(department.getDeptId());
+		department1.setDeptId(department.getDeptId());
 		department1.setDeptName(department.getDeptName());
 		departmentService.insertDepartment(department1);
 		model.addObject("loggedInUser", session1.getAttribute("loggedInUser"));

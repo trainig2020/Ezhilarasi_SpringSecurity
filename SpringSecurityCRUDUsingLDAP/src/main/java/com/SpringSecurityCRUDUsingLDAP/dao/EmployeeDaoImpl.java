@@ -21,20 +21,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	public void insertEmployee(Employee emp) {
 
-		Transaction transaction = null;
-		try {
-			Session session = sessionFactory.openSession();
+		sessionFactory.getCurrentSession().save(emp);
 
-			transaction = session.beginTransaction();
-			session.save(emp);
-			System.out.println("Datas Inserted");
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
+		System.out.println("Datas Inserted");
+
 	}
 
 	public Employee updateEmployee(Employee emp) {
@@ -45,7 +35,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			transaction = session.beginTransaction();
 			session.update(emp);
-			
+
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -55,13 +45,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return emp;
 
-
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Employee> getEmployeesByDept(int deptId) {
 
-		List<Employee> lst =  sessionFactory.getCurrentSession().createQuery("from Employee where deptId="+deptId).list();
+		List<Employee> lst = sessionFactory.getCurrentSession().createQuery("from Employee where deptId=" + deptId)
+				.list();
 		for (Employee emp : lst) {
 			System.out.println("EmpID is : " + emp.getEmpId() + " EmpName is :" + emp.getEmpName());
 		}
@@ -101,8 +91,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		// session.beginTransaction();
 
 		emp_det = (Employee) session.get(Employee.class, id);
-		
-		 
 
 		System.out.println("EmpID  : " + emp_det.getEmpId() + " EmpName  :" + emp_det.getEmpName() + " Age  : "
 				+ emp_det.getAge() + " DeptId  : " + emp_det.getDeptId());

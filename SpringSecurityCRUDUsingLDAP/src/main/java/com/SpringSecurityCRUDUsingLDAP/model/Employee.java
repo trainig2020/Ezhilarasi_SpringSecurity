@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Table(name="Employee_Details")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int empId;
 	//@Size(min = 3, max = 30)
 	private String empName;
